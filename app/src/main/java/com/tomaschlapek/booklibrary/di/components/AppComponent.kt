@@ -4,7 +4,10 @@ import android.content.Context
 import com.tomaschlapek.booklibrary.App
 import com.tomaschlapek.booklibrary.di.module.AppModule
 import com.tomaschlapek.booklibrary.di.module.BuildersModule
+import com.tomaschlapek.booklibrary.di.module.FactoryModule
 import com.tomaschlapek.booklibrary.di.module.NetModule
+import com.tomaschlapek.booklibrary.ui.bookdetail.BookDetailViewModelFactory
+import com.tomaschlapek.booklibrary.ui.library.LibraryViewModelFactory
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule
@@ -13,12 +16,16 @@ import retrofit2.Retrofit
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = arrayOf(AndroidInjectionModule::class, AppModule::class, NetModule::class, BuildersModule::class))
+@Component(modules = arrayOf(AndroidInjectionModule::class, AppModule::class, NetModule::class, FactoryModule::class, BuildersModule::class))
 interface AppComponent : AndroidInjector<App> {
 
   fun provideContext(): Context
 
   fun provideRetrofit(): Retrofit
+
+  fun provideLibraryViewModelFactory(): LibraryViewModelFactory
+
+  fun provideBookDetailViewModelFactory(): BookDetailViewModelFactory
 
   /**
    * Description:
@@ -35,7 +42,6 @@ interface AppComponent : AndroidInjector<App> {
 
   // TODO Change to androidx fragment when library will be ready
   //  fun inject(fragment: Fragment)
-
 
 
 }
