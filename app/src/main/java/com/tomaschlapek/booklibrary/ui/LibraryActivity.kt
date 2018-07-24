@@ -1,7 +1,8 @@
-package com.tomaschlapek.booklibrary
+package com.tomaschlapek.booklibrary.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import com.tomaschlapek.booklibrary.R
 import com.tomaschlapek.booklibrary.ui.library.LibraryFragment
 
 class LibraryActivity : AppCompatActivity() {
