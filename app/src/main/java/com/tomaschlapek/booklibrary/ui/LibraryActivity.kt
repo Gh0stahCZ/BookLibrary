@@ -37,7 +37,9 @@ class LibraryActivity : AppCompatActivity() {
             }
           }
           else -> {
-
+            fab.setOnClickListener {
+              null
+            }
           }
         }
 

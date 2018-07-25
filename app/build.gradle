@@ -90,6 +90,10 @@ dependencies {
   implementation networkDependencies.rxjava_adapter
   implementation networkDependencies.converter_gson
 
+  //RX
+  implementation rxDependencies.rxjava
+  implementation rxDependencies.rxandroid
+
   // Picasso - only snapshot is usable now
 //  implementation 'com.squareup.picasso:picasso:2.6.0-SNAPSHOT'
   implementation 'com.squareup.picasso:picasso:2.71828'
@@ -112,4 +116,11 @@ dependencies {
   implementation "android.arch.navigation:navigation-fragment:$nav_version"
   implementation "android.arch.navigation:navigation-ui:$nav_version"
   androidTestImplementation "android.arch.navigation:navigation-testing:$nav_version"
+
+  //LiveData
+  implementation 'androidx.lifecycle:lifecycle-runtime:2.0.0-beta01'
+  annotationProcessor 'androidx.lifecycle:lifecycle-compiler:2.0.0-beta01'
+
+
+
 }
