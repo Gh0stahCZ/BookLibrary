@@ -52,7 +52,6 @@ class BookDetailFragment : Fragment() {
 
   private fun renderLoadingState() {
     detail_progress_bar.visible()
-
   }
 
   private fun renderDataState(bookDetail: BookDetail?) {

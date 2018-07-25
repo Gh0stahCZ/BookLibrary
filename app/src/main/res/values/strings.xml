@@ -2,5 +2,6 @@
 
   <string name="app_name">BookLibrary</string>
   <string name="currency_price">%.1f EUR</string>
+  <string name="library_more_books">More books</string>
 
 </resources>

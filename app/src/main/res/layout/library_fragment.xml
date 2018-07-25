@@ -8,11 +8,33 @@
   android:layout_height="match_parent"
   tools:context=".ui.library.LibraryFragment">
 
+
+  <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    android:id="@+id/library_swipe_progress"
+    android:layout_width="0dp"
+    android:layout_height="0dp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent">
+
+
+    <androidx.recyclerview.widget.RecyclerView
+      android:id="@+id/library_recycler_view"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+      tools:listitem="@layout/item_book"
+      />
+
+  </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
   <com.google.android.material.button.MaterialButton
     android:id="@+id/detail_button"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:text="Open Detail"
+    android:visibility="gone"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"

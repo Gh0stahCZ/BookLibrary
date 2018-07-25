@@ -27,7 +27,6 @@ class BookDetailViewModel(val picasso: Picasso, val schedulersFacade: Schedulers
     loadBookDetail(loadBookDetailUseCase)
   }
 
-
   private fun loadBookDetail(loadBookDetailUseCase: LoadBookDetailUseCase) {
     disposables.add(loadBookDetailUseCase.execute()
       .observeOn(schedulersFacade.ui())

@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'androidx.navigation.safeargs'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt' // Kotlin APT
@@ -60,6 +61,10 @@ android {
       versionNameSuffix '-DEBUG'
       buildConfigField BOOLEAN, FIELD_DEBUG_MODE, TRUE
     }
+  }
+
+  dataBinding {
+    enabled = true
   }
 }
 

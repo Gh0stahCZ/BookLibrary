@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools">
+
+  <androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+      style="@style/Text.Huge"
+      android:id="@+id/book_item_text"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:gravity="center_vertical"
+      android:padding="@dimen/margin_huge"
+      android:clickable="true"
+      android:focusable="true"
+      android:drawableStart="@drawable/ic_local_library_white_24dp"
+      android:drawablePadding="@dimen/margin_medium"
+      android:background="?attr/selectableItemBackground"
+      android:drawableTint="@color/text_color_secondary"
+      tools:text="@tools:sample/full_names"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"/>
+
+
+  </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
