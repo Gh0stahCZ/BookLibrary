@@ -8,14 +8,10 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.tomaschlapek.booklibrary.Injector
 import com.tomaschlapek.booklibrary.R
-import com.tomaschlapek.booklibrary.model.Response
-import com.tomaschlapek.booklibrary.model.ResponseError
-import com.tomaschlapek.booklibrary.model.ResponseLoading
-import com.tomaschlapek.booklibrary.model.ResponseSuccess
-import com.tomaschlapek.booklibrary.util.gone
-import com.tomaschlapek.booklibrary.util.observe
-import com.tomaschlapek.booklibrary.util.visible
-import com.tomaschlapek.booklibrary.util.withViewModel
+import com.tomaschlapek.booklibrary.model.BookDetail
+import com.tomaschlapek.booklibrary.model.Data
+import com.tomaschlapek.booklibrary.model.DataState
+import com.tomaschlapek.booklibrary.util.*
 import kotlinx.android.synthetic.main.book_detail_fragment.*
 import timber.log.Timber
 
@@ -33,7 +29,7 @@ class BookDetailFragment : Fragment() {
 
   override fun onActivityCreated(savedInstanceState: Bundle?) {
     super.onActivityCreated(savedInstanceState)
-    withViewModel<BookDetailViewModel>(factory) {
+    viewModel = withViewModel(factory) {
       observe(response, ::processResponse)
     }
 
@@ -41,38 +37,38 @@ class BookDetailFragment : Fragment() {
   }
 
   private fun init() {
-    detail_trigger_btn.setOnClickListener {
-      viewModel.loadBookDetail()
-    }
+    //    detail_trigger_btn.setOnClickListener {
+    //    viewModel.loadBookDetail()
+    //    }
   }
 
-  private fun processResponse(response: Response) {
-    when (response) {
-      is ResponseLoading -> renderLoadingState()
-      is ResponseSuccess -> renderDataState(response.data)
-      is ResponseError -> renderErrorState(response.error)
+  private fun processResponse(response: Data<BookDetail>) {
+    when (response.dataState) {
+      DataState.LOADING -> renderLoadingState()
+      DataState.SUCCESS -> renderDataState(response.data)
+      DataState.ERROR -> renderErrorState(response.message)
     }
   }
 
   private fun renderLoadingState() {
     detail_progress_bar.visible()
 
-    book_detail_message.gone()
   }
 
-  private fun renderDataState(greeting: String) {
+  private fun renderDataState(bookDetail: BookDetail?) {
     detail_progress_bar.gone()
 
-    book_detail_message.visible()
-    book_detail_message.text = greeting
+    book_detail_title.text = bookDetail?.title
+    book_detail_author.text = bookDetail?.author
+    book_detail_price.text = getString(R.string.currency_price, bookDetail?.price)
+    imageView.loadUrl(bookDetail?.image, true)
   }
 
-  private fun renderErrorState(throwable: Throwable) {
-    Timber.e(throwable)
-
+  private fun renderErrorState(message: String?) {
+    Timber.e(message)
     detail_progress_bar.gone()
-    book_detail_message.visible()
-    Toast.makeText(context, "Error : ${throwable.localizedMessage}", Toast.LENGTH_SHORT).show()
+
+    Toast.makeText(context, "Error : $message", Toast.LENGTH_SHORT).show()
   }
 
 }

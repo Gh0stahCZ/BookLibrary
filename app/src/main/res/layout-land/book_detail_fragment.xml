@@ -30,18 +30,18 @@
       app:layout_constraintGuide_percent="0.8"/>
 
     <androidx.constraintlayout.widget.Guideline
-      android:id="@+id/guidelineLeft"
-      android:orientation="vertical"
+      android:id="@+id/guidelineTop"
+      android:orientation="horizontal"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      app:layout_constraintGuide_percent="0.05"/>
+      app:layout_constraintGuide_percent="0.1"/>
 
     <androidx.constraintlayout.widget.Guideline
-      android:id="@+id/guidelineRight"
-      android:orientation="vertical"
+      android:id="@+id/guidelineBottom"
+      android:orientation="horizontal"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      app:layout_constraintGuide_percent="0.95"/>
+      app:layout_constraintGuide_percent="0.9"/>
 
     <androidx.constraintlayout.widget.Guideline
       android:id="@+id/guidelineBottomEnd"
@@ -55,13 +55,13 @@
       android:layout_width="0dp"
       android:layout_height="0dp"
       android:background="@drawable/rounded_shape_light"
-      app:layout_constraintDimensionRatio="W,3:3.8"
+      app:layout_constraintDimensionRatio="W,3.8:2.5"
       app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="@id/guidelineTopThird"
-      app:layout_constraintBottom_toBottomOf="parent"
-      app:layout_constraintHorizontal_bias="0.0"
-      app:layout_constraintVertical_bias="1.0"/>
+      app:layout_constraintStart_toStartOf="@id/imageView"
+      app:layout_constraintTop_toTopOf="@id/guidelineTop"
+      app:layout_constraintBottom_toBottomOf="@id/guidelineBottom"
+      app:layout_constraintHorizontal_bias="1.0"
+      app:layout_constraintVertical_bias="0.0"/>
 
     <ImageView
       android:id="@+id/imageView"
@@ -73,7 +73,7 @@
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintDimensionRatio="W,3:4.5"
       app:layout_constraintTop_toTopOf="parent"
-      app:layout_constraintBottom_toTopOf="@+id/guidelineBottomThird"
+      app:layout_constraintBottom_toBottomOf="parent"
       tools:srcCompat="@tools:sample/avatars"/>
 
     <ProgressBar
@@ -94,9 +94,9 @@
       android:layout_width="0dp"
       android:layout_height="0dp"
       android:padding="@dimen/margin_medium"
-      app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
-      app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
-      app:layout_constraintTop_toBottomOf="@+id/imageView"
+      app:layout_constraintStart_toEndOf="@+id/imageView"
+      app:layout_constraintEnd_toEndOf="@+id/view"
+      app:layout_constraintTop_toTopOf="@+id/view"
       app:layout_constraintBottom_toBottomOf="@+id/view"
       >
 
@@ -112,7 +112,6 @@
         android:paddingBottom="@dimen/margin_small"
         android:drawableStart="@drawable/ic_local_library_white_24dp"
         android:drawablePadding="@dimen/margin_small"
-        app:autoSizeTextType="uniform"
         tools:text="@tools:sample/full_names"
         android:lines="1"/>
 
@@ -128,7 +127,6 @@
         android:paddingBottom="@dimen/margin_small"
         android:drawableStart="@drawable/ic_perm_identity_white_24dp"
         android:drawablePadding="@dimen/margin_small"
-        app:autoSizeTextType="uniform"
         android:lines="1"
         tools:text="@tools:sample/full_names"
         />
@@ -145,7 +143,6 @@
         android:paddingBottom="@dimen/margin_medium"
         android:drawableStart="@drawable/ic_attach_money_white_24dp"
         android:drawablePadding="@dimen/margin_small"
-        app:autoSizeTextType="uniform"
         tools:text="@tools:sample/lorem"
         android:lines="1"
         />

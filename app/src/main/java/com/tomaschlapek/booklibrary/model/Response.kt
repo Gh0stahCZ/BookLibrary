@@ -10,6 +10,11 @@ class ResponseSuccess(val data: String) : Response(data, null)
 class ResponseError(val error: Throwable) : Response(null, error)
 class ResponseLoading() : Response(null, null)
 
+
+enum class DataState { LOADING, SUCCESS, ERROR }
+
+data class Data<out T> constructor(val dataState: DataState, val data: T? = null, val message: String? = null)
+
 //sealed class Status
 //class StatusSuccess : Status()
 //class StatusError : Status()

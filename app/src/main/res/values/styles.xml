@@ -291,6 +291,11 @@
   </style>
 
   <style name="Text.SubTitle"
+         parent="Text.Larger">
+    <item name="android:textColor">@color/white</item>
+  </style>
+
+  <style name="Text.Price"
          parent="Text.Large">
     <item name="android:textColor">@color/white</item>
   </style>

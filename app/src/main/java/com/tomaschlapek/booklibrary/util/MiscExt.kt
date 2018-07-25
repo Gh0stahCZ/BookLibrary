@@ -14,6 +14,7 @@ import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.squareup.picasso.Picasso
 import com.tomaschlapek.booklibrary.R
+import jp.wasabeef.picasso.transformations.RoundedCornersTransformation
 import okhttp3.RequestBody
 import okio.Buffer
 import java.io.IOException
@@ -47,12 +48,16 @@ fun ViewGroup.inflate(@LayoutRes layoutRes: Int, attachToRoot: Boolean = false):
   return LayoutInflater.from(context).inflate(layoutRes, this, attachToRoot)
 }
 
-fun ImageView.loadUrl(url: String, placeHolderRes: Int? = null) {
+fun ImageView.loadUrl(url: String?, cropCorners: Boolean = false, placeHolderRes: Int? = null) {
 
   val requestMaker =
     Picasso.get()
       .load(url)
       .config(Bitmap.Config.RGB_565)
+
+  if (cropCorners) {
+    requestMaker.transform(RoundedCornersTransformation(16.dp, 0.dp, RoundedCornersTransformation.CornerType.ALL))
+  }
 
   placeHolderRes?.let {
     requestMaker.placeholder(it)
@@ -83,6 +88,7 @@ inline fun <reified T : ViewModel> FragmentActivity.withViewModel(viewModelFacto
   vm.body()
   return vm
 }
+
 inline fun <reified T : ViewModel> Fragment.getViewModel(viewModelFactory: ViewModelProvider.Factory): T {
   return ViewModelProviders.of(this, viewModelFactory)[T::class.java]
 }
