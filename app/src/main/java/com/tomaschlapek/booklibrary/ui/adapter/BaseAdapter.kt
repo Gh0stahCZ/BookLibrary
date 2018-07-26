@@ -71,6 +71,11 @@ abstract class BaseAdapter<T>(protected var context: Context, itemList: MutableL
     return countItems()
   }
 
+  open fun setItems(savedCardItems: MutableList<T>) {
+    mItemList.clear()
+    mItemList = savedCardItems
+  }
+
   open fun addItems(savedCardItems: MutableList<T>) {
     mItemList = savedCardItems
   }

@@ -1,46 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
+<!--<layout
   xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
-  xmlns:tools="http://schemas.android.com/tools">
+  xmlns:tools="http://schemas.android.com/tools">-->
+<!-- TODO Add data binding when Android bug with Navigation Component will be solved-->
 
-  <androidx.constraintlayout.widget.ConstraintLayout
-    android:id="@+id/library"
+<androidx.constraintlayout.widget.ConstraintLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:id="@+id/library"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  >
+
+  <TextView
+    android:id="@+id/library_toolbar_title"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.library.LibraryFragment">
+    android:layout_height="wrap_content"
+    android:padding="@dimen/margin_huge"
+    android:text="@string/library_title"
+    android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    />
+
+  <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    android:id="@+id/library_swipe_progress"
+    android:layout_width="0dp"
+    android:layout_height="0dp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/library_toolbar_title"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent">
 
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-      android:id="@+id/library_swipe_progress"
-      android:layout_width="0dp"
-      android:layout_height="0dp"
-      app:layout_constraintBottom_toBottomOf="parent"
-      app:layout_constraintTop_toTopOf="parent"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent">
+    <androidx.recyclerview.widget.RecyclerView
+      android:id="@+id/library_recycler_view"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+      tools:listitem="@layout/item_book"
+      />
 
+  </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-      <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/library_recycler_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/item_book"
-        />
-
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
-    <com.google.android.material.button.MaterialButton
-      android:id="@+id/detail_button"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text="Open Detail"
-      android:visibility="gone"
-      app:layout_constraintBottom_toBottomOf="parent"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent"/>
-
-  </androidx.constraintlayout.widget.ConstraintLayout>
-</layout>
+</androidx.constraintlayout.widget.ConstraintLayout>
+  <!--
+  </layout>
+  -->

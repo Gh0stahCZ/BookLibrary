@@ -13,10 +13,9 @@ class LibraryActivity : AppCompatActivity() {
 
   lateinit var binding: LibraryActivityBinding
 
-
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    setContentView(R.layout.library_activity)
+    //    setContentView(R.layout.library_activity)
     binding = DataBindingUtil.setContentView(this, R.layout.library_activity)
     init()
   }

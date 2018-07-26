@@ -1,154 +1,157 @@
-<FrameLayout
+<layout
   xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
-  xmlns:tools="http://schemas.android.com/tools"
-  android:layout_width="match_parent"
-  android:layout_height="match_parent"
-  android:padding="@dimen/margin_huge">
+  xmlns:tools="http://schemas.android.com/tools">
 
-  <androidx.constraintlayout.widget.ConstraintLayout
-    android:id="@+id/dash"
-    android:layout_width="wrap_content"
+  <FrameLayout
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_gravity="center"
-    android:clickable="true"
-    android:focusable="true"
-    >
+    android:padding="@dimen/margin_huge">
 
-    <androidx.constraintlayout.widget.Guideline
-      android:id="@+id/guidelineTopThird"
-      android:orientation="horizontal"
+    <androidx.constraintlayout.widget.ConstraintLayout
+      android:id="@+id/dash"
       android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      app:layout_constraintGuide_percent="0.25"/>
-
-    <androidx.constraintlayout.widget.Guideline
-      android:id="@+id/guidelineBottomThird"
-      android:orientation="horizontal"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      app:layout_constraintGuide_percent="0.8"/>
-
-    <androidx.constraintlayout.widget.Guideline
-      android:id="@+id/guidelineTop"
-      android:orientation="horizontal"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      app:layout_constraintGuide_percent="0.1"/>
-
-    <androidx.constraintlayout.widget.Guideline
-      android:id="@+id/guidelineBottom"
-      android:orientation="horizontal"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      app:layout_constraintGuide_percent="0.9"/>
-
-    <androidx.constraintlayout.widget.Guideline
-      android:id="@+id/guidelineBottomEnd"
-      android:orientation="horizontal"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      app:layout_constraintGuide_percent="0.95"/>
-
-    <View
-      android:id="@+id/view"
-      android:layout_width="0dp"
-      android:layout_height="0dp"
-      android:background="@drawable/rounded_shape_light"
-      app:layout_constraintDimensionRatio="W,3.8:2.5"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="@id/imageView"
-      app:layout_constraintTop_toTopOf="@id/guidelineTop"
-      app:layout_constraintBottom_toBottomOf="@id/guidelineBottom"
-      app:layout_constraintHorizontal_bias="1.0"
-      app:layout_constraintVertical_bias="0.0"/>
-
-    <ImageView
-      android:id="@+id/imageView"
-      android:layout_width="0dp"
-      android:layout_height="0dp"
-      android:adjustViewBounds="true"
-      android:background="@drawable/rounded_shape_dark"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintDimensionRatio="W,3:4.5"
-      app:layout_constraintTop_toTopOf="parent"
-      app:layout_constraintBottom_toBottomOf="parent"
-      tools:srcCompat="@tools:sample/avatars"/>
-
-    <ProgressBar
-      android:id="@+id/detail_progress_bar"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:adjustViewBounds="true"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      android:visibility="gone"
-      tools:visibility="visible"
-      app:layout_constraintTop_toTopOf="parent"
-      app:layout_constraintBottom_toTopOf="@+id/guidelineBottomThird"
-      tools:srcCompat="@tools:sample/avatars"/>
-
-    <LinearLayout
-      android:orientation="vertical"
-      android:layout_width="0dp"
-      android:layout_height="0dp"
-      android:padding="@dimen/margin_medium"
-      app:layout_constraintStart_toEndOf="@+id/imageView"
-      app:layout_constraintEnd_toEndOf="@+id/view"
-      app:layout_constraintTop_toTopOf="@+id/view"
-      app:layout_constraintBottom_toBottomOf="@+id/view"
+      android:layout_height="match_parent"
+      android:layout_gravity="center"
+      android:clickable="true"
+      android:focusable="true"
       >
 
-      <TextView
-        style="@style/Text.Title"
-        android:id="@+id/book_detail_title"
-        android:layout_width="match_parent"
+      <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineTopThird"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintGuide_percent="0.25"/>
+
+      <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineBottomThird"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintGuide_percent="0.8"/>
+
+      <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineTop"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintGuide_percent="0.1"/>
+
+      <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineBottom"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintGuide_percent="0.9"/>
+
+      <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineBottomEnd"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintGuide_percent="0.95"/>
+
+      <View
+        android:id="@+id/view"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:layout_marginStart="@dimen/margin_medium"
-        android:gravity="center_vertical"
-        android:paddingTop="@dimen/margin_small"
-        android:paddingBottom="@dimen/margin_small"
-        android:drawableStart="@drawable/ic_local_library_white_24dp"
-        android:drawablePadding="@dimen/margin_small"
-        tools:text="@tools:sample/full_names"
-        android:lines="1"/>
+        android:background="@drawable/rounded_shape_light"
+        app:layout_constraintDimensionRatio="W,3.8:2.5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/imageView"
+        app:layout_constraintTop_toTopOf="@id/guidelineTop"
+        app:layout_constraintBottom_toBottomOf="@id/guidelineBottom"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintVertical_bias="0.0"/>
 
-      <TextView
-        style="@style/Text.SubTitle"
-        android:id="@+id/book_detail_author"
-        android:layout_width="match_parent"
+      <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:layout_marginStart="@dimen/margin_medium"
-        android:gravity="center_vertical"
-        android:paddingTop="@dimen/margin_small"
-        android:paddingBottom="@dimen/margin_small"
-        android:drawableStart="@drawable/ic_perm_identity_white_24dp"
-        android:drawablePadding="@dimen/margin_small"
-        android:lines="1"
-        tools:text="@tools:sample/full_names"
-        />
+        android:adjustViewBounds="true"
+        android:background="@drawable/rounded_shape_dark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintDimensionRatio="W,3:4.5"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:srcCompat="@tools:sample/avatars"/>
 
-      <TextView
-        style="@style/Text.Price"
-        android:id="@+id/book_detail_price"
-        android:layout_width="match_parent"
+      <ProgressBar
+        android:id="@+id/detail_progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:visibility="gone"
+        tools:visibility="visible"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineBottomThird"
+        tools:srcCompat="@tools:sample/avatars"/>
+
+      <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:layout_marginStart="@dimen/margin_medium"
-        android:gravity="center_vertical"
-        android:paddingTop="@dimen/margin_small"
-        android:paddingBottom="@dimen/margin_medium"
-        android:drawableStart="@drawable/ic_attach_money_white_24dp"
-        android:drawablePadding="@dimen/margin_small"
-        tools:text="@tools:sample/lorem"
-        android:lines="1"
-        />
+        android:padding="@dimen/margin_medium"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintEnd_toEndOf="@+id/view"
+        app:layout_constraintTop_toTopOf="@+id/view"
+        app:layout_constraintBottom_toBottomOf="@+id/view"
+        >
 
-    </LinearLayout>
+        <TextView
+          style="@style/Text.Title"
+          android:id="@+id/book_detail_title"
+          android:layout_width="match_parent"
+          android:layout_height="0dp"
+          android:layout_weight="1"
+          android:layout_marginStart="@dimen/margin_medium"
+          android:gravity="center_vertical"
+          android:paddingTop="@dimen/margin_small"
+          android:paddingBottom="@dimen/margin_small"
+          android:drawableStart="@drawable/ic_local_library_white_24dp"
+          android:drawablePadding="@dimen/margin_small"
+          tools:text="@tools:sample/full_names"
+          android:lines="1"/>
+
+        <TextView
+          style="@style/Text.SubTitle"
+          android:id="@+id/book_detail_author"
+          android:layout_width="match_parent"
+          android:layout_height="0dp"
+          android:layout_weight="1"
+          android:layout_marginStart="@dimen/margin_medium"
+          android:gravity="center_vertical"
+          android:paddingTop="@dimen/margin_small"
+          android:paddingBottom="@dimen/margin_small"
+          android:drawableStart="@drawable/ic_perm_identity_white_24dp"
+          android:drawablePadding="@dimen/margin_small"
+          android:lines="1"
+          tools:text="@tools:sample/full_names"
+          />
+
+        <TextView
+          style="@style/Text.Price"
+          android:id="@+id/book_detail_price"
+          android:layout_width="match_parent"
+          android:layout_height="0dp"
+          android:layout_weight="1"
+          android:layout_marginStart="@dimen/margin_medium"
+          android:gravity="center_vertical"
+          android:paddingTop="@dimen/margin_small"
+          android:paddingBottom="@dimen/margin_medium"
+          android:drawableStart="@drawable/ic_attach_money_white_24dp"
+          android:drawablePadding="@dimen/margin_small"
+          tools:text="@tools:sample/lorem"
+          android:lines="1"
+          />
+
+      </LinearLayout>
 
 
-  </androidx.constraintlayout.widget.ConstraintLayout>
-</FrameLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+  </FrameLayout>
+</layout>

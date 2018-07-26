@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+  <string name="arg_book_id" translatable="false">book_id</string>
+
+</resources>

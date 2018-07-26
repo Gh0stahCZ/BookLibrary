@@ -18,6 +18,8 @@ import timber.log.Timber
 
 class BookDetailFragment : Fragment() {
 
+  private var bookId: Int? = null
+
   var factory: BookDetailViewModelFactory = Injector.get().provideBookDetailViewModelFactory()
 
   lateinit var binding: BookDetailFragmentBinding
@@ -37,13 +39,10 @@ class BookDetailFragment : Fragment() {
       observe(response, ::processResponse)
     }
 
-  }
-
-  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-    super.onViewCreated(view, savedInstanceState)
+    loadArguments(arguments ?: savedInstanceState)
     init()
-  }
 
+  }
 
   override fun onDestroy() {
     super.onDestroy()
@@ -51,9 +50,15 @@ class BookDetailFragment : Fragment() {
   }
 
   private fun init() {
-    //    detail_trigger_btn.setOnClickListener {
-    //    viewModel.loadLibrary()
-    //    }
+    bookId?.let { id ->
+      viewModel.loadBookDetail(id)
+    }
+  }
+
+  private fun loadArguments(bundle: Bundle?) {
+    bundle?.let {
+      bookId = bundle.getInt(getString(R.string.arg_book_id))
+    }
   }
 
   private fun processResponse(response: Data<BookDetail>) {
@@ -83,5 +88,6 @@ class BookDetailFragment : Fragment() {
 
     Toast.makeText(context, "Error : $message", Toast.LENGTH_SHORT).show()
   }
+
 
 }

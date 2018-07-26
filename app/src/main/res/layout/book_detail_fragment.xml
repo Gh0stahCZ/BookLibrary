@@ -4,7 +4,6 @@
   xmlns:tools="http://schemas.android.com/tools">
 
   <FrameLayout
-
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="@dimen/margin_huge">
@@ -116,6 +115,7 @@
           android:drawableStart="@drawable/ic_local_library_white_24dp"
           android:drawablePadding="@dimen/margin_small"
           app:autoSizeTextType="uniform"
+          android:text=".."
           tools:text="@tools:sample/full_names"
           android:lines="1"/>
 
@@ -132,6 +132,7 @@
           android:drawableStart="@drawable/ic_perm_identity_white_24dp"
           android:drawablePadding="@dimen/margin_small"
           app:autoSizeTextType="uniform"
+          android:text=".."
           android:lines="1"
           tools:text="@tools:sample/full_names"
           />
@@ -141,6 +142,7 @@
           android:id="@+id/book_detail_price"
           android:layout_width="match_parent"
           android:layout_height="0dp"
+          android:text=".."
           android:layout_weight="1"
           android:layout_marginStart="@dimen/margin_medium"
           android:gravity="center_vertical"

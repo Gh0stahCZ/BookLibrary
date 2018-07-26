@@ -2,7 +2,6 @@ package com.tomaschlapek.booklibrary.ui.bookadd
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.squareup.picasso.Picasso
 import com.tomaschlapek.booklibrary.domain.interactor.AddBookUseCase
 import com.tomaschlapek.booklibrary.model.AddBookBody
 import com.tomaschlapek.booklibrary.model.BookDetail
@@ -11,10 +10,9 @@ import com.tomaschlapek.booklibrary.model.DataState
 import com.tomaschlapek.booklibrary.rx.SchedulersFacade
 import io.reactivex.disposables.CompositeDisposable
 import timber.log.Timber
-import java.util.concurrent.TimeUnit
 
 
-class BookAddViewModel(val picasso: Picasso, val sched: SchedulersFacade, val usecase: AddBookUseCase) : ViewModel() {
+class BookAddViewModel(val sched: SchedulersFacade, val usecase: AddBookUseCase) : ViewModel() {
 
   private val disposables = CompositeDisposable()
   val response = MutableLiveData<Data<BookDetail>>()
@@ -31,11 +29,16 @@ class BookAddViewModel(val picasso: Picasso, val sched: SchedulersFacade, val us
     disposables.add(usecase.execute(newBook)
       .observeOn(sched.ui())
       .subscribeOn(sched.io())
-      .doOnSubscribe { disposable -> response.setValue(Data(dataState = DataState.LOADING, data = response.value?.data, message = null)) }
-      .delay(3L, TimeUnit.SECONDS, sched.ui())
+      .doOnSubscribe { response.setValue(Data(dataState = DataState.LOADING, data = response.value?.data, message = null)) }
       .subscribe(
-        { bookData -> response.setValue(Data(dataState = DataState.SUCCESS, data = bookData, message = null)) },
-        { throwable -> response.setValue(Data(dataState = DataState.SUCCESS, data = response.value?.data, message = throwable.localizedMessage)) }
+        { response ->
+          if (response.isSuccessful) {
+            this.response.setValue(Data(dataState = DataState.SUCCESS, data = response.body(), message = null))
+          } else {
+            this.response.setValue(Data(dataState = DataState.ERROR, data = null, message = response.errorBody()?.string()))
+          }
+        },
+        { throwable -> response.setValue(Data(dataState = DataState.ERROR, data = response.value?.data, message = throwable.localizedMessage)) }
       )
     )
   }

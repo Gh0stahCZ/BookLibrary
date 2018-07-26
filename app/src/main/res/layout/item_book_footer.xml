@@ -11,7 +11,7 @@
     android:padding="@dimen/margin_medium"
     android:textSize="@dimen/text_size_huge"
     android:textColor="@color/text_color_secondary"
-    tools:text="@string/library_more_books"
+    android:text="@string/library_more_books"
 
     />
 </layout>

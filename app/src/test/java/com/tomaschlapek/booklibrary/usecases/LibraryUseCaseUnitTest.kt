@@ -9,6 +9,7 @@ import io.reactivex.Single
 import org.junit.Rule
 import org.junit.Test
 import org.mockito.ArgumentMatchers.anyInt
+import retrofit2.Response
 
 
 class LibraryUseCaseUnitTest {
@@ -24,7 +25,7 @@ class LibraryUseCaseUnitTest {
   @Test
   fun testCryptoListUseCases_getCryptoList_Completed() {
     whenever(loadLibraryRepo.getItems(anyInt(), anyInt()))
-      .thenReturn(Single.just(emptyList()))
+      .thenReturn(Single.just(Response.success(emptyList())))
 
     loadLibraryUseCase.execute(0, 0)
       .test()

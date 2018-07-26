@@ -29,7 +29,12 @@
   <fragment
     android:id="@+id/bookDetailFragment"
     android:name="com.tomaschlapek.booklibrary.ui.bookdetail.BookDetailFragment"
-    android:label="BookDetailFragment"/>
+    android:label="BookDetailFragment">
+    <argument
+      android:name="@string/arg_book_id"
+      app:argType="integer"
+      android:defaultValue="-1"/>
+  </fragment>
   <fragment
     android:id="@+id/bookAddFragment"
     android:name="com.tomaschlapek.booklibrary.ui.bookadd.BookAddFragment"

@@ -6,6 +6,10 @@
   <string name="book_add_name">Book name</string>
   <string name="book_add_author">Author</string>
   <string name="book_add_price">Price</string>
-  <string name="book_add_confirm">Confirm</string>
+  <string name="book_add_confirm">Add book</string>
+  <string name="library_title">Book library</string>
+  <string name="library_subtitle">Books</string>
+  <string name="general_error">Unknown error</string>
+  <string name="not_implemented">Not implemented on API</string>
 
 </resources>

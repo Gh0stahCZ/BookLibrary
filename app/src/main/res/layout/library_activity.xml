@@ -2,12 +2,12 @@
 <layout
   xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
-  xmlns:tools="http://schemas.android.com/tools">
+  xmlns:tools="http://schemas.android.com/tools"
+  >
 
   <androidx.coordinatorlayout.widget.CoordinatorLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.LibraryActivity"
     >
 
     <fragment
@@ -36,7 +36,7 @@
       android:layout_height="wrap_content"
       android:layout_gravity="bottom|center_horizontal"
       app:srcCompat="@drawable/ic_add_circle_white24dp"
-      app:layout_anchor="@+id/bottom_appbar"/>
+      app:layout_anchor="@id/bottom_appbar"/>
 
 
   </androidx.coordinatorlayout.widget.CoordinatorLayout>
