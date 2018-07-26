@@ -8,11 +8,11 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.tomaschlapek.booklibrary.Injector
 import com.tomaschlapek.booklibrary.R
+import com.tomaschlapek.booklibrary.databinding.BookDetailFragmentBinding
 import com.tomaschlapek.booklibrary.model.BookDetail
 import com.tomaschlapek.booklibrary.model.Data
 import com.tomaschlapek.booklibrary.model.DataState
 import com.tomaschlapek.booklibrary.util.*
-import kotlinx.android.synthetic.main.book_detail_fragment.*
 import timber.log.Timber
 
 
@@ -20,11 +20,15 @@ class BookDetailFragment : Fragment() {
 
   var factory: BookDetailViewModelFactory = Injector.get().provideBookDetailViewModelFactory()
 
+  lateinit var binding: BookDetailFragmentBinding
+
   private lateinit var viewModel: BookDetailViewModel
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
     savedInstanceState: Bundle?): View {
-    return inflater.inflate(R.layout.book_detail_fragment, container, false)
+
+    binding = BookDetailFragmentBinding.inflate(layoutInflater, container, false)
+    return binding.root
   }
 
   override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -33,12 +37,22 @@ class BookDetailFragment : Fragment() {
       observe(response, ::processResponse)
     }
 
+  }
+
+  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    super.onViewCreated(view, savedInstanceState)
     init()
+  }
+
+
+  override fun onDestroy() {
+    super.onDestroy()
+    viewModel.response.removeObservers(this)
   }
 
   private fun init() {
     //    detail_trigger_btn.setOnClickListener {
-    //    viewModel.loadBookDetail()
+    //    viewModel.loadLibrary()
     //    }
   }
 
@@ -51,21 +65,21 @@ class BookDetailFragment : Fragment() {
   }
 
   private fun renderLoadingState() {
-    detail_progress_bar.visible()
+    binding.detailProgressBar.visible()
   }
 
   private fun renderDataState(bookDetail: BookDetail?) {
-    detail_progress_bar.gone()
+    binding.detailProgressBar.gone()
 
-    book_detail_title.text = bookDetail?.title
-    book_detail_author.text = bookDetail?.author
-    book_detail_price.text = getString(R.string.currency_price, bookDetail?.price)
-    imageView.loadUrl(bookDetail?.image, true)
+    binding.bookDetailTitle.text = bookDetail?.title
+    binding.bookDetailAuthor.text = bookDetail?.author
+    binding.bookDetailPrice.text = getString(R.string.currency_price, bookDetail?.price)
+    binding.imageView.loadUrl(bookDetail?.image, true)
   }
 
   private fun renderErrorState(message: String?) {
     Timber.e(message)
-    detail_progress_bar.gone()
+    binding.detailProgressBar.gone()
 
     Toast.makeText(context, "Error : $message", Toast.LENGTH_SHORT).show()
   }

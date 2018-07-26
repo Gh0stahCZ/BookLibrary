@@ -17,7 +17,7 @@ import retrofit2.Retrofit
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = arrayOf(AndroidInjectionModule::class, AppModule::class, NetModule::class, FactoryModule::class, BuildersModule::class))
+@Component(modules = [(AndroidInjectionModule::class), (AppModule::class), (NetModule::class), (FactoryModule::class), (BuildersModule::class)])
 interface AppComponent : AndroidInjector<App> {
 
   fun provideContext(): Context

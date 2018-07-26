@@ -10,6 +10,7 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.tomaschlapek.booklibrary.Injector
 import com.tomaschlapek.booklibrary.R
+import com.tomaschlapek.booklibrary.databinding.LibraryFragmentBinding
 import com.tomaschlapek.booklibrary.model.BookItem
 import com.tomaschlapek.booklibrary.model.BookPack
 import com.tomaschlapek.booklibrary.model.Data
@@ -18,7 +19,6 @@ import com.tomaschlapek.booklibrary.ui.adapter.BooksAdapter
 import com.tomaschlapek.booklibrary.util.observe
 import com.tomaschlapek.booklibrary.util.withViewModel
 import com.tomaschlapek.booklibrary.widget.PaginationScrollListener
-import kotlinx.android.synthetic.main.library_fragment.*
 import timber.log.Timber
 
 class LibraryFragment : Fragment() {
@@ -26,12 +26,18 @@ class LibraryFragment : Fragment() {
   var factory: LibraryViewModelFactory = Injector.get().provideLibraryViewModelFactory()
   lateinit var adapter: BooksAdapter
   lateinit var scrollListener: PaginationScrollListener
+  lateinit var binding: LibraryFragmentBinding
+
+  private var isLoading = false
+  private var isLastPage = false
 
   private lateinit var viewModel: LibraryViewModel
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
     savedInstanceState: Bundle?): View {
-    return inflater.inflate(R.layout.library_fragment, container, false)
+    binding = LibraryFragmentBinding.inflate(layoutInflater, container, false)
+    init()
+    return binding.root
   }
 
   override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -39,8 +45,12 @@ class LibraryFragment : Fragment() {
     viewModel = withViewModel(factory) {
       observe(response, ::processResponse)
     }
+  }
 
-    init()
+
+  override fun onDestroy() {
+    super.onDestroy()
+    viewModel.response.removeObservers(this)
   }
 
   private fun processResponse(response: Data<List<BookItem>>) {
@@ -52,11 +62,11 @@ class LibraryFragment : Fragment() {
   }
 
   private fun renderLoadingState() {
-    library_swipe_progress.isRefreshing = true
+    binding.librarySwipeProgress.isRefreshing = true
   }
 
   private fun renderDataState(bookDetail: List<BookItem>?) {
-    library_swipe_progress.isRefreshing = false
+    binding.librarySwipeProgress.isRefreshing = false
 
     //    detail_button.text = bookDetail?.firstOrNull()?.title
     val outputList = mutableListOf<BookPack>()
@@ -73,32 +83,34 @@ class LibraryFragment : Fragment() {
 
   private fun renderErrorState(message: String?) {
     Timber.e(message)
-    library_swipe_progress.isRefreshing = false
+    binding.librarySwipeProgress.isRefreshing = false
 
     Toast.makeText(context, "Error : $message", Toast.LENGTH_SHORT).show()
   }
 
   private fun init() {
-
-    detail_button.setOnClickListener {
+    binding.detailButton.setOnClickListener {
       openBookDetail()
     }
 
     context?.let {
-      adapter = BooksAdapter(it, mutableListOf()) { bookPack ->
-        openBookDetail()
-      }
+      adapter = BooksAdapter(it, mutableListOf()) { openBookDetail() }
 
       initScrollListener()
 
-      library_recycler_view.adapter = adapter
-      library_recycler_view.addOnScrollListener(scrollListener)
+      binding.libraryRecyclerView.adapter = adapter
+      binding.libraryRecyclerView.addOnScrollListener(scrollListener)
 
-      library_swipe_progress.setOnRefreshListener {
-        viewModel.loadBookDetail()
+      binding.librarySwipeProgress.setOnRefreshListener {
+        viewModel.loadLibrary()
       }
 
     }
+  }
+
+  private fun loadNextPage() {
+    adapter.addLoadingFooter()
+    viewModel.loadLibrary()
   }
 
   private fun openBookDetail() {
@@ -108,20 +120,28 @@ class LibraryFragment : Fragment() {
   }
 
   private fun initScrollListener() {
-    scrollListener = object : PaginationScrollListener(library_recycler_view.layoutManager as LinearLayoutManager) {
-      override fun loadMoreItems() {
-        viewModel.loadNextPage()
-        adapter.addLoadingFooter()
-      }
+    scrollListener = OnScrollListener(binding.libraryRecyclerView.layoutManager as LinearLayoutManager)
 
-      override fun isLastPage(): Boolean {
-        return !adapter.hasMoreData
-      }
+//    scrollListener = object : PaginationScrollListener(binding.libraryRecyclerView.layoutManager as LinearLayoutManager) {
+//      override fun loadMoreItems() {
+//        viewModel.loadNextPage()
+//        adapter.addLoadingFooter()
+//      }
+//
+//      override fun isLastPage(): Boolean {
+//        return !adapter.hasMoreData
+//      }
+//
+//      override fun isLoading(): Boolean {
+//        return adapter.isLoading
+//      }
+//    }
+  }
 
-      override fun isLoading(): Boolean {
-        return adapter.isLoading
-      }
-    }
+  inner class OnScrollListener(layoutManager: LinearLayoutManager) : PaginationScrollListener(layoutManager) {
+    override fun isLoading() = isLoading
+    override fun loadMoreItems() = loadNextPage()
+    override fun isLastPage() = isLastPage
   }
 
 }

@@ -18,24 +18,23 @@ buildNumber = 1
 println 'Using build number ' + buildNumber + ' from commit count based on counting commits to branch master'
 
 // Set keystore
-def keystorePropertiesFile = rootProject.file("keystore.properties")
+/*def keystorePropertiesFile = rootProject.file("keystore.properties")
 def keystoreProperties = new Properties()
-keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+keystoreProperties.load(new FileInputStream(keystorePropertiesFile))*/
 
 android {
 
   compileSdkVersion compileSdkVersionVar
   buildToolsVersion buildToolsVersionVar
 
-  signingConfigs {
+  /*signingConfigs {
     config {
       keyAlias keystoreProperties['keyAlias']
       keyPassword keystoreProperties['keyPassword']
       storeFile file(keystoreProperties['storeFile'])
       storePassword keystoreProperties['storePassword']
     }
-  }
-
+  }*/
 
   defaultConfig {
     applicationId "com.tomaschlapek.booklibrary"
@@ -109,8 +108,8 @@ dependencies {
   // Logging
   implementation "com.jakewharton.timber:timber:4.5.1"
 
-  androidTestImplementation 'androidx.test:runner:1.1.0-alpha3'
-  androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha3'
+  androidTestImplementation 'androidx.test:runner:1.1.0-alpha4'
+  androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha4'
 //  implementation 'androidx.core:core-ui:+'
 
   implementation 'androidx.constraintlayout:constraintlayout:1.1.2'
@@ -127,6 +126,9 @@ dependencies {
   implementation 'androidx.lifecycle:lifecycle-runtime:2.0.0-beta01'
   annotationProcessor 'androidx.lifecycle:lifecycle-compiler:2.0.0-beta01'
 
+  // Mockito testing
+  testImplementation "org.mockito:mockito-core:2.20.1"
+  testImplementation 'androidx.arch.core:core-testing:2.0.0-beta01'
 
 
 }

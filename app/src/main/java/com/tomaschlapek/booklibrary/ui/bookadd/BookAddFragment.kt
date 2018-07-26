@@ -44,6 +44,12 @@ class BookAddFragment : Fragment() {
     init()
   }
 
+
+  override fun onDestroy() {
+    super.onDestroy()
+    viewModel.response.removeObservers(this)
+  }
+
   private fun init() {
     binding.bookAddConfirm.setOnClickListener {
       viewModel.addBookDetail(collectBookInfo())
