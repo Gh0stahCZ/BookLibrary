@@ -6,9 +6,9 @@ import io.reactivex.Single
 import javax.inject.Inject
 
 
-class LoadLibraryUseCase @Inject constructor(private val libraryRepository: LibraryRepository) {
+class LoadLibraryUseCase @Inject constructor(private val repo: LibraryRepository) {
 
   fun execute(): Single<List<BookItem>> {
-    return libraryRepository.libraryItem
+    return repo.libraryItem
   }
 }

@@ -3,5 +3,9 @@
   <string name="app_name">BookLibrary</string>
   <string name="currency_price">%.1f EUR</string>
   <string name="library_more_books">More books</string>
+  <string name="book_add_name">Book name</string>
+  <string name="book_add_author">Author</string>
+  <string name="book_add_price">Price</string>
+  <string name="book_add_confirm">Confirm</string>
 
 </resources>

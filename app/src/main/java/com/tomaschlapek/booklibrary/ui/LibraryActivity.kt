@@ -1,7 +1,6 @@
 package com.tomaschlapek.booklibrary.ui
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.Navigation
 import com.google.android.material.bottomappbar.BottomAppBar
@@ -23,23 +22,21 @@ class LibraryActivity : AppCompatActivity() {
         when (destination.id) {
           R.id.libraryFragment -> {
             bottom_appbar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_CENTER
-            fab.setImageResource(R.drawable.ic_apps_white_24dp)
+            fab.setImageResource(R.drawable.ic_add_circle_white24dp)
             fab.setOnClickListener {
-              Toast.makeText(this, "Library", Toast.LENGTH_SHORT).show()
+              Navigation.findNavController(this, R.id.container).navigate(R.id.action_libraryFragment_to_bookAddFragment)
             }
           }
+          R.id.bookAddFragment,
           R.id.bookDetailFragment -> {
             bottom_appbar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_END
             fab.setImageResource(R.drawable.ic_reply_white_24dp)
-
             fab.setOnClickListener {
               Navigation.findNavController(this, R.id.container).popBackStack()
             }
           }
           else -> {
-            fab.setOnClickListener {
-              null
-            }
+            fab.setOnClickListener(null)
           }
         }
 

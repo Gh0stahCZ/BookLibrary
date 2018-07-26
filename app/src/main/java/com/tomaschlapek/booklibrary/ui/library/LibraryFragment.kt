@@ -89,7 +89,7 @@ class LibraryFragment : Fragment() {
         openBookDetail()
       }
 
-      initScrollListner()
+      initScrollListener()
 
       library_recycler_view.adapter = adapter
       library_recycler_view.addOnScrollListener(scrollListener)
@@ -107,7 +107,7 @@ class LibraryFragment : Fragment() {
     }
   }
 
-  private fun initScrollListner() {
+  private fun initScrollListener() {
     scrollListener = object : PaginationScrollListener(library_recycler_view.layoutManager as LinearLayoutManager) {
       override fun loadMoreItems() {
         viewModel.loadNextPage()

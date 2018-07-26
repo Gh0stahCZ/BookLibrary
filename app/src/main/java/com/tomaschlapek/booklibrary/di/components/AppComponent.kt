@@ -6,6 +6,7 @@ import com.tomaschlapek.booklibrary.di.module.AppModule
 import com.tomaschlapek.booklibrary.di.module.BuildersModule
 import com.tomaschlapek.booklibrary.di.module.FactoryModule
 import com.tomaschlapek.booklibrary.di.module.NetModule
+import com.tomaschlapek.booklibrary.ui.bookadd.BookAddViewModelFactory
 import com.tomaschlapek.booklibrary.ui.bookdetail.BookDetailViewModelFactory
 import com.tomaschlapek.booklibrary.ui.library.LibraryViewModelFactory
 import dagger.BindsInstance
@@ -26,6 +27,8 @@ interface AppComponent : AndroidInjector<App> {
   fun provideLibraryViewModelFactory(): LibraryViewModelFactory
 
   fun provideBookDetailViewModelFactory(): BookDetailViewModelFactory
+
+  fun provideBookAddViewModelFactory(): BookAddViewModelFactory
 
   /**
    * Description:

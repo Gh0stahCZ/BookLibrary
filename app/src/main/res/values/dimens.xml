@@ -29,6 +29,7 @@
   <dimen name="text_size_step">2sp</dimen>
 
   <dimen name="view_corner_radius">8dp</dimen>
+  <dimen name="input_min_width">160dp</dimen>
 
 
 </resources>

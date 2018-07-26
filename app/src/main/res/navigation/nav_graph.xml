@@ -18,9 +18,20 @@
       app:exitAnim="@anim/nav_default_exit_anim"
       app:popEnterAnim="@anim/nav_default_pop_enter_anim"
       app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+    <action
+      android:id="@+id/action_libraryFragment_to_bookAddFragment"
+      app:destination="@id/bookAddFragment"
+      app:enterAnim="@anim/nav_default_enter_anim"
+      app:exitAnim="@anim/nav_default_exit_anim"
+      app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+      app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
   </fragment>
   <fragment
     android:id="@+id/bookDetailFragment"
     android:name="com.tomaschlapek.booklibrary.ui.bookdetail.BookDetailFragment"
     android:label="BookDetailFragment"/>
+  <fragment
+    android:id="@+id/bookAddFragment"
+    android:name="com.tomaschlapek.booklibrary.ui.bookadd.BookAddFragment"
+    android:label="BookAddFragment"/>
 </navigation>
