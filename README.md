@@ -13,4 +13,4 @@ Framework lays great emphasis on flexibility in deciding how to organize and arc
 
 <img src="screenshots/screen_library.png" width="25%" />
 <img src="screenshots/screen_detail_portrait.png" width="25%" />
-<img src="screenshots/screen_detail_landscape.png" width="50%" />
+<img src="screenshots/screen_detail_land.png" width="50%" />
