@@ -14,7 +14,7 @@ import timber.log.Timber
 class LibraryViewModel(val sched: SchedulersFacade, val usecase: ILoadLibraryUseCase) : ViewModel() {
 
   private val disposables = CompositeDisposable()
-  val response = MutableLiveData<Data<List<BookItem>>>()
+  val liveData = MutableLiveData<Data<ArrayList<BookItem>>>()
   private var currentPage = 0
 
   init {
@@ -29,24 +29,31 @@ class LibraryViewModel(val sched: SchedulersFacade, val usecase: ILoadLibraryUse
 
   fun loadLibrary() {
     currentPage = 0
-    loadLibrary(usecase)
+    loadLibrary(usecase, currentPage)
   }
 
   private fun loadLibrary(useCase: ILoadLibraryUseCase, page: Int = 0, limit: Int = LIBRARY_LIMIT) {
     disposables.add(useCase.execute(page * limit, limit)
       .observeOn(sched.ui())
       .subscribeOn(sched.io())
-      .doOnSubscribe { response.setValue(Data(dataState = DataState.LOADING, data = response.value?.data, message = response.value?.message)) }
+      .doOnSubscribe { liveData.setValue(Data(dataState = DataState.LOADING, data = liveData.value?.data, message = liveData.value?.message)) }
       //      .delay(3L, TimeUnit.SECONDS, sched.ui())
       .subscribe(
         { response ->
           if (response.isSuccessful) {
-            this.response.setValue(Data(dataState = DataState.SUCCESS, data = response.body(), message = page.toString()))
+
+            val oldValues = if (page == 0) arrayListOf() else liveData.value?.data ?: arrayListOf()
+
+            response.body()?.let {
+              oldValues.addAll(it)
+            }
+
+            liveData.setValue(Data(dataState = DataState.SUCCESS, data = oldValues, message = page.toString()))
           } else {
-            this.response.setValue(Data(dataState = DataState.ERROR, data = null, message = response.errorBody()?.string()))
+            liveData.setValue(Data(dataState = DataState.ERROR, data = null, message = response.errorBody()?.string()))
           }
         },
-        { throwable -> response.setValue(Data(dataState = DataState.SUCCESS, data = response.value?.data, message = throwable.localizedMessage)) }
+        { throwable -> liveData.setValue(Data(dataState = DataState.SUCCESS, data = liveData.value?.data, message = throwable.localizedMessage)) }
       )
     )
   }

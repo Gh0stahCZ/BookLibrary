@@ -8,11 +8,11 @@ import javax.inject.Inject
 
 class LoadLibraryUseCase @Inject constructor(private val repo: ILibraryRepository) : ILoadLibraryUseCase {
 
-  override fun execute(page: Int, limit: Int): Single<Response<List<BookItem>>> {
+  override fun execute(page: Int, limit: Int): Single<Response<ArrayList<BookItem>>> {
     return repo.getItems(page, limit)
   }
 }
 
 interface ILoadLibraryUseCase {
-  fun execute(page: Int, limit: Int): Single<Response<List<BookItem>>>
+  fun execute(page: Int, limit: Int): Single<Response<ArrayList<BookItem>>>
 }

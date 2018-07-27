@@ -13,7 +13,7 @@ interface BookApiService {
   fun getBookDetail(@Path("id") id: Int): Single<Response<BookDetail>>
 
   @GET("/api/v1/items")
-  fun getBookLibrary(@Query("page") page: Int, @Query("limit") limit: Int): Single<Response<List<BookItem>>>
+  fun getBookLibrary(@Query("page") page: Int, @Query("limit") limit: Int): Single<Response<ArrayList<BookItem>>>
 
   @POST("/api/v1/items")
   fun addBook(@Body newBook: AddBookBody): Single<Response<BookDetail>>

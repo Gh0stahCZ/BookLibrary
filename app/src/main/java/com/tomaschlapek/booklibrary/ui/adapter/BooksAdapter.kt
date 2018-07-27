@@ -73,6 +73,24 @@ class BooksAdapter(context: Context, itemList: MutableList<BookPack>, private va
     handler.post(r)
   }
 
+  /*override fun setItems(savedCardItems: MutableList<BookPack>) {
+    val handler = Handler()
+    val r = Runnable {
+      if (isLoading) {
+        isLoading = false
+        val lastItemPostion = mItemList.size - 1
+        val loadingFooterItem = mItemList[lastItemPostion]
+        if (loadingFooterItem is BookLoadingFooter) {
+          mItemList.remove(loadingFooterItem)
+        }
+      }
+      mItemList.clear()
+      mItemList = savedCardItems
+      notifyDataSetChanged()
+    }
+    handler.post(r)
+  }*/
+
   fun addLoadingFooter() {
     if (!isLoading) {
       isLoading = true

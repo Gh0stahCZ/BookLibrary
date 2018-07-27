@@ -46,14 +46,14 @@ class LibraryFragment : Fragment() {
   override fun onActivityCreated(savedInstanceState: Bundle?) {
     super.onActivityCreated(savedInstanceState)
     viewModel = withViewModel(factory) {
-      observe(response, ::processResponse)
+      observe(liveData, ::processResponse)
     }
 
     // because of presentation of pagination with limit 3 item per page, new request is called
     // otherwise would be only received last data from LiveData object
-    savedInstanceState?.let {
-      viewModel.loadLibrary()
-    }
+//    savedInstanceState?.let {
+//      viewModel.loadLibrary()
+//    }
   }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -61,13 +61,13 @@ class LibraryFragment : Fragment() {
     init()
   }
 
-
-  override fun onDestroy() {
-    super.onDestroy()
-    viewModel.response.removeObservers(this)
+  override fun onDestroyView() {
+    super.onDestroyView()
+    viewModel.liveData.removeObservers(this)
   }
 
-  private fun processResponse(response: Data<List<BookItem>>) {
+
+  private fun processResponse(response: Data<ArrayList<BookItem>>) {
     when (response.dataState) {
       DataState.LOADING -> renderLoadingState()
       DataState.SUCCESS -> renderDataState(response.data, response.message)
@@ -93,9 +93,10 @@ class LibraryFragment : Fragment() {
       if (page?.equals("0") == true) {
         adapter.setItems(outputList) // clear previous list and set new items
       } else {
-        adapter.addItems(outputList) // add items to current state
+        adapter.setItems(outputList) // add items to current state
       }
     }
+//    scrollListener.checkAndLoad()
   }
 
   private fun renderErrorState(message: String?) {

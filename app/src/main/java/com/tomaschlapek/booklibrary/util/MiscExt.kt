@@ -22,6 +22,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import com.tomaschlapek.booklibrary.R
+import com.tomaschlapek.booklibrary.model.Data
 import io.reactivex.Single
 import jp.wasabeef.picasso.transformations.RoundedCornersTransformation
 import okhttp3.MediaType
@@ -181,4 +182,12 @@ fun checkBackgroundDataRestricted(context: Context): Boolean {
         false
     }
   } else false
+}
+
+operator fun <T> MutableLiveData<Data<ArrayList<T>>>.plusAssign(values: List<T>?) {
+  val value = this.value?.data ?: arrayListOf()
+  values?.let {
+    value.addAll(it)
+  }
+  this.value?.data = value
 }

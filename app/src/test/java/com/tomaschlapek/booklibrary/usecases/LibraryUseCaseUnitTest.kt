@@ -25,7 +25,7 @@ class LibraryUseCaseUnitTest {
   @Test
   fun testCryptoListUseCases_getCryptoList_Completed() {
     whenever(loadLibraryRepo.getItems(anyInt(), anyInt()))
-      .thenReturn(Single.just(Response.success(emptyList())))
+      .thenReturn(Single.just(Response.success(arrayListOf())))
 
     loadLibraryUseCase.execute(0, 0)
       .test()

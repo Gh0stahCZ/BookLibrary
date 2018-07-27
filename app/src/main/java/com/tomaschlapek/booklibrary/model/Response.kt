@@ -13,7 +13,7 @@ class ResponseLoading() : Response(null, null)
 
 enum class DataState { LOADING, SUCCESS, ERROR }
 
-data class Data<out T> constructor(val dataState: DataState, val data: T? = null, val message: String? = null)
+data class Data<T> constructor(val dataState: DataState, var data: T? = null, val message: String? = null)
 
 //sealed class Status
 //class StatusSuccess : Status()

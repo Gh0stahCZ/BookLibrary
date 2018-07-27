@@ -112,10 +112,11 @@
           android:gravity="center_vertical"
           android:paddingTop="@dimen/margin_small"
           android:paddingBottom="@dimen/margin_small"
+          android:ellipsize="end"
           android:drawableStart="@drawable/ic_local_library_white_24dp"
           android:drawablePadding="@dimen/margin_small"
           tools:text="@tools:sample/full_names"
-          android:lines="1"/>
+          android:maxLines="2"/>
 
         <TextView
           style="@style/Text.SubTitle"
@@ -127,9 +128,10 @@
           android:gravity="center_vertical"
           android:paddingTop="@dimen/margin_small"
           android:paddingBottom="@dimen/margin_small"
+          android:ellipsize="end"
           android:drawableStart="@drawable/ic_perm_identity_white_24dp"
           android:drawablePadding="@dimen/margin_small"
-          android:lines="1"
+          android:maxLines="2"
           tools:text="@tools:sample/full_names"
           />
 
@@ -146,7 +148,7 @@
           android:drawableStart="@drawable/ic_attach_money_white_24dp"
           android:drawablePadding="@dimen/margin_small"
           tools:text="@tools:sample/lorem"
-          android:lines="1"
+          android:maxLines="2"
           />
 
       </LinearLayout>

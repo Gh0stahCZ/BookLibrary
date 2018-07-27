@@ -22,5 +22,5 @@ class LibraryRepository @Inject constructor(val retrofit: Retrofit) : ILibraryRe
 }
 
 interface ILibraryRepository {
-  fun getItems(page: Int, limit: Int): Single<Response<List<BookItem>>>
+  fun getItems(page: Int, limit: Int): Single<Response<ArrayList<BookItem>>>
 }

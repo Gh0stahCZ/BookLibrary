@@ -40,20 +40,18 @@ class BookDetailFragment : Fragment() {
     }
 
     loadArguments(arguments ?: savedInstanceState)
-    init()
-
+    if (savedInstanceState == null) {
+      bookId?.let { id ->
+        viewModel.loadBookDetail(id)
+      }
+    }
   }
 
-  override fun onDestroy() {
-    super.onDestroy()
+  override fun onDestroyView() {
+    super.onDestroyView()
     viewModel.response.removeObservers(this)
   }
 
-  private fun init() {
-    bookId?.let { id ->
-      viewModel.loadBookDetail(id)
-    }
-  }
 
   private fun loadArguments(bundle: Bundle?) {
     bundle?.let {
